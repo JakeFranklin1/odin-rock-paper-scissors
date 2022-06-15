@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Function scope example</title>
+</head>
+
+<body>
+
+    <script>
+
+        const choices = ["Rock", "Paper", "Scissors"];
+        const playerSelection = "Rock";
+        let playerScore = 0
+        let computerScore = 0
+        let roundWinner = ''
+
+        function computerPlay() {
+            return computerSelection[~~(Math.random() * choices.length)];
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection === computerSelection) {
+                roundWinner = 'tie'
+            }
+            if (
+                (playerSelection === 'ROCK' && computerSelection === 'SCISSORS') ||
+                (playerSelection === 'SCISSORS' && computerSelection === 'PAPER') ||
+                (playerSelection === 'PAPER' && computerSelection === 'ROCK')
+            ) {
+                playerScore++
+                roundWinner = 'player'
+            }
+            if (
+                (computerSelection === 'ROCK' && playerSelection === 'SCISSORS') ||
+                (computerSelection === 'SCISSORS' && playerSelection === 'PAPER') ||
+                (computerSelection === 'PAPER' && playerSelection === 'ROCK')
+            ) {
+                computerScore++
+                roundWinner = 'computer'
+            }
+            updateScoreMessage(roundWinner, playerSelection, computerSelection)
+        }
+
+        function computerPlay() {
+            return choices[~~(Math.random() * choices.length)];
+        }
+
+        console.log(computerPlay())
+        console.log(playRound(playerSelection, computerSelection))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
