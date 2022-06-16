@@ -9,11 +9,17 @@
 <body>
 
     <script>
+
+        // helper function
+
         function capitalize(string) {
             return (
                 string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1)
             );
         }
+
+
+        // player and computer logic
 
         const choices = ["Rock", "Paper", "Scissors"]
         function getComputerSelection() {
@@ -26,6 +32,8 @@
 
             return playerSelection;
         }
+
+        // game logic
 
         function playRound(playerSelection, computerSelection) {
             let log = '';
@@ -94,6 +102,7 @@
         }
 
         game();
+        
     </script>
 
 </body>
