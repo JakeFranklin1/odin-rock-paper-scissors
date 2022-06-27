@@ -1,110 +1,104 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Function scope example</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <script>
+      // helper function
 
-        // helper function
+      function capitalize(string) {
+        return (
+          string.toLowerCase().charAt(0).toUpperCase() +
+          string.toLowerCase().slice(1)
+        );
+      }
 
-        function capitalize(string) {
-            return (
-                string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1)
-            );
+      // player and computer logic
+
+      const choices = ["Rock", "Paper", "Scissors"];
+      function getComputerSelection() {
+        return choices[~~(Math.random() * choices.length)];
+      }
+
+      function getPlayerSelection() {
+        let playerSelection = prompt("Rock, Paper or Scissors ?");
+        playerSelection = capitalize(playerSelection);
+
+        return playerSelection;
+      }
+
+      // game logic
+
+      function playRound(playerSelection, computerSelection) {
+        let log = "";
+
+        if (playerSelection === "Rock") {
+          if (computerSelection === "Paper") {
+            log = "You Lose! Paper beats Rock";
+          } else if (computerSelection === "Scissors") {
+            log = "You Win! Rock beats Scissors";
+          } else {
+            log = "It's a tie";
+          }
+        } else if (playerSelection === "Paper") {
+          if (computerSelection === "Scissors") {
+            log = "You Lose! Scissors beats Paper";
+          } else if (computerSelection === "Rock") {
+            log = "You Win! Paper beats Rock";
+          } else {
+            log = "It's a tie";
+          }
+        } else if (playerSelection === "Scissors") {
+          if (computerSelection === "Rock") {
+            log = "You Lose! Rock beats Scissors";
+          } else if (computerSelection === "Paper") {
+            log = "You Win! Scissors beats Paper";
+          } else {
+            log = "It's a tie";
+          }
         }
 
+        return log;
+      }
 
-        // player and computer logic
+      function game() {
+        let playerScore = 0;
+        let computerScore = 0;
 
-        const choices = ["Rock", "Paper", "Scissors"]
-        function getComputerSelection() {
-            return choices[~~(Math.random() * choices.length)];
+        for (let i = 0; i < 5; i++) {
+          let computerSelection = getComputerSelection();
+          let playerSelection = getPlayerSelection();
+          let roundResult = playRound(playerSelection, computerSelection);
+          console.log(
+            `Player: ${playerSelection} Versus Computer: ${computerSelection}`
+          );
+          console.log(roundResult);
+
+          if (roundResult.search("You Win!") > -1) {
+            playerScore++;
+          } else if (roundResult.search("You lose!") > -1) {
+            computerScore++;
+          }
         }
 
-        function getPlayerSelection() {
-            let playerSelection = prompt('Rock, Paper or Scissors ?');
-            playerSelection = capitalize(playerSelection);
+        console.log("Results");
+        console.log(
+          `Player score: ${playerScore} & Computer Score: ${computerScore}`
+        );
 
-            return playerSelection;
+        if (playerScore > computerScore) {
+          console.log("You Win!");
+        } else if (playerScore < computerScore) {
+          console.log("You Lose!");
+        } else {
+          console.log("it's a tie");
         }
+      }
 
-        // game logic
-
-        function playRound(playerSelection, computerSelection) {
-            let log = '';
-
-            if (playerSelection === 'Rock') {
-                if (computerSelection === 'Paper') {
-                    log = 'You Lose! Paper beats Rock';
-                } else if (computerSelection === 'Scissors') {
-                    log = 'You Win! Rock beats Scissors';
-                } else {
-                    log = "It's a tie";
-                }
-            } else if (playerSelection === 'Paper') {
-                if (computerSelection === 'Scissors') {
-                    log = 'You Lose! Scissors beats Paper';
-                } else if (computerSelection === 'Rock') {
-                    log = 'You Win! Paper beats Rock';
-                } else {
-                    log = "It's a tie";
-                }
-            } else if (playerSelection === 'Scissors') {
-                if (computerSelection === 'Rock') {
-                    log = 'You Lose! Rock beats Scissors';
-                } else if (computerSelection === 'Paper') {
-                    log = 'You Win! Scissors beats Paper';
-                } else {
-                    log = "It's a tie";
-                }
-            }
-
-            return log;
-        }
-
-        function game() {
-            let playerScore = 0;
-            let computerScore = 0;
-
-            for (let i = 0; i < 5; i++) {
-                let computerSelection = getComputerSelection();
-                let playerSelection = getPlayerSelection();
-                let roundResult = playRound(playerSelection, computerSelection);
-                console.log(
-                    `Player: ${playerSelection} Versus Computer: ${computerSelection}`
-                );
-                console.log(roundResult);
-
-                if (roundResult.search('You Win!') > -1) {
-                    playerScore++;
-                } else if (roundResult.search('You lose!') > -1) {
-                    computerScore++;
-                }
-            }
-
-            console.log('Results')
-            console.log(
-                `Player score: ${playerScore} & Computer Score: ${computerScore}`
-            );
-
-            if (playerScore > computerScore) {
-                console.log("You Win!")
-            } else if (playerScore < computerScore) {
-                console.log('You Lose!')
-            } else {
-                console.log("it's a tie");
-            }
-        }
-
-        game();
-        
+      game();
     </script>
-
-</body>
-
+  </body>
 </html>
