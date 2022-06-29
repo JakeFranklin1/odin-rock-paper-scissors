@@ -1,104 +1,56 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8" />
-    <title>Function scope example</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="RPS.js" defer></script>
+    <title>Rock Paper Scissors</title>
   </head>
 
   <body>
-    <script>
-      // helper function
+    <header class="header">
+      <h1 class="title">ROCK PAPER SCISSORS</h1>
+    </header>
 
-      function capitalize(string) {
-        return (
-          string.toLowerCase().charAt(0).toUpperCase() +
-          string.toLowerCase().slice(1)
-        );
-      }
+    <div class="main-container">
+      <div class="scoreboard">
+        <h2 class="score-info" id="scoreInfo">Choose your weapon</h2>
+        <h3 class="score-message" id="scoreMessage">
+          First to score 5 points wins the game!
+        </h3>
 
-      // player and computer logic
+        <div class="score-container">
+          <div class="score-box">
+            <div class="choice" id="playerSign"> ? </div>
+            <p class="score" id="playerScore">Player: 0</p>
+          </div>
+          <div class="score-box">
+            <div class="choice" id="computerSign"> ? </div>
+            <p class="score" id="computerScore">Computer: 0</p>
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
 
-      const choices = ["Rock", "Paper", "Scissors"];
-      function getComputerSelection() {
-        return choices[~~(Math.random() * choices.length)];
-      }
+        <button class="btn btn-square" id="rockBtn">
+          <img class ="image" src="img/rock.png">
+        </button>
+        <button class="btn btn-square" id="paperBtn">
+          <img class ="image" src="img/paper.png">
+        </button>
+        <button class="btn btn-square" id="scissorsBtn">
+          <img class ="image" src="img/scissors.png">
+        </button>
+      </div>
+      <!-- <div class="game"></div> -->
+    </div>
 
-      function getPlayerSelection() {
-        let playerSelection = prompt("Rock, Paper or Scissors ?");
-        playerSelection = capitalize(playerSelection);
-
-        return playerSelection;
-      }
-
-      // game logic
-
-      function playRound(playerSelection, computerSelection) {
-        let log = "";
-
-        if (playerSelection === "Rock") {
-          if (computerSelection === "Paper") {
-            log = "You Lose! Paper beats Rock";
-          } else if (computerSelection === "Scissors") {
-            log = "You Win! Rock beats Scissors";
-          } else {
-            log = "It's a tie";
-          }
-        } else if (playerSelection === "Paper") {
-          if (computerSelection === "Scissors") {
-            log = "You Lose! Scissors beats Paper";
-          } else if (computerSelection === "Rock") {
-            log = "You Win! Paper beats Rock";
-          } else {
-            log = "It's a tie";
-          }
-        } else if (playerSelection === "Scissors") {
-          if (computerSelection === "Rock") {
-            log = "You Lose! Rock beats Scissors";
-          } else if (computerSelection === "Paper") {
-            log = "You Win! Scissors beats Paper";
-          } else {
-            log = "It's a tie";
-          }
-        }
-
-        return log;
-      }
-
-      function game() {
-        let playerScore = 0;
-        let computerScore = 0;
-
-        for (let i = 0; i < 5; i++) {
-          let computerSelection = getComputerSelection();
-          let playerSelection = getPlayerSelection();
-          let roundResult = playRound(playerSelection, computerSelection);
-          console.log(
-            `Player: ${playerSelection} Versus Computer: ${computerSelection}`
-          );
-          console.log(roundResult);
-
-          if (roundResult.search("You Win!") > -1) {
-            playerScore++;
-          } else if (roundResult.search("You lose!") > -1) {
-            computerScore++;
-          }
-        }
-
-        console.log("Results");
-        console.log(
-          `Player score: ${playerScore} & Computer Score: ${computerScore}`
-        );
-
-        if (playerScore > computerScore) {
-          console.log("You Win!");
-        } else if (playerScore < computerScore) {
-          console.log("You Lose!");
-        } else {
-          console.log("it's a tie");
-        }
-      }
-
-      game();
-    </script>
+      <div class="footer">
+        <p>Copyright © Jake Franklin 2022</p>
+      </div>
   </body>
+
 </html>
