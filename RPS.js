@@ -64,11 +64,22 @@ paperBtn.addEventListener("click", () => handleClick("PAPER"));
 scissorsBtn.addEventListener("click", () => handleClick("SCISSORS"));
 
 function handleClick(playerSelection) {
+  if (isGameOver()) {
+    openEndgameModal();
+    return;
+  }
+
   const computerSelection = getRandomChoice();
   playRound(playerSelection, computerSelection);
   updateChoices(playerSelection, computerSelection);
   updateScore();
+
+  if (isGameOver()) {
+    openEndgameModal();
+    setFinalMessage();
+  }
 }
+
 
 function updateChoices(playerSelection, computerSelection) {
   switch (playerSelection) {
@@ -91,7 +102,7 @@ function updateChoices(playerSelection, computerSelection) {
       computerSign.textContent = "✋";
       break;
     case "SCISSORS":
-      computerSign.textContent = "✌";
+      computerSign.textContent = "✌️";
       break;
   }
 }
